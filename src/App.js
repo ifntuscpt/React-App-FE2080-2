@@ -1,6 +1,10 @@
 import './App.css';
+import Image from './components/Image/Image';
+import Album from './components/Album/Album';
+import Artists from './components/Artists/Artists';
 
 function App() {
+
   const data = {
     album: {
       album_type: "album",
@@ -78,19 +82,17 @@ function App() {
     uri: "spotify:track:3z8h0TU7ReDPLIbEnYhWZb"
   };
 
-  console.log(data.uri)
+  console.log(data.uri);
 
   return (
     <div className="header">
-      <h1>Playlist</h1>
-        <div className='album'>
-        <img src={data.album.images[1].url}/>
-        <h2>{data.album.name}</h2>
-        <h2>{data.artists[0].name}</h2>
-
+    <h1>Playlist</h1>
+      <div className='album'>
+        <Image img={data.album.images[0].url}/>
+        <Album album={data.album.name}/>
+        <Artists name={data.album.artists[0].name}/>
         <button class="myButton"><a href={data.uri}>Select</a></button>
-
-        </div>
+      </div>
     </div>
   );
 }

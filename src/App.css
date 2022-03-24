@@ -8,7 +8,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   background-image: url(https://www.wallpaperbetter.com/wallpaper/897/808/985/piano-bw-black-hd-1080P-wallpaper.jpg);
 }
 
@@ -40,6 +39,9 @@ body {
 }
 
 img {
-  border-radius: 25px;
-  border: 2px solid #73ad21;
+	height: 500px;
+	width: 500px;
+	border-radius: 25px;
+	border: 2px solid #73ad21;
 }
+
