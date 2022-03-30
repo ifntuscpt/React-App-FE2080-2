@@ -1,14 +1,6 @@
-.header{
-  text-align: center;
-}
-.album {
-  text-align: center;
-}
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(https://www.wallpaperbetter.com/wallpaper/897/808/985/piano-bw-black-hd-1080P-wallpaper.jpg);
+	background-color: rgb(32,33,36);
+	/* background-image: url(https://www.wallpaperbetter.com/wallpaper/897/808/985/piano-bw-black-hd-1080P-wallpaper.jpg); */
 }
 
 .myButton {
@@ -35,13 +27,43 @@ body {
 
 * {
   font-family: arial;
-  color: white;
+  color: rgba(23, 211, 39, 0.842);
 }
 
 img {
-	height: 500px;
-	width: 500px;
 	border-radius: 25px;
-	border: 2px solid #73ad21;
+	border: 2px solid rgba(23, 211, 39, 0.842);
 }
 
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 100px;
+  }
+  
+  #home {
+	margin-top: 20px;
+	margin-bottom: 20px;
+  }
+  
+  .content {
+	margin-top: 40px;
+  }
+  
+  .cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	column-gap: 20px;
+	row-gap: 40px;
+	justify-items: center;
+  }
+  
+  .center {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+  }
+  

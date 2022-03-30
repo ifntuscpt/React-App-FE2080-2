@@ -1,0 +1,33 @@
+.btn {
+  min-height: 20px;
+  display: inline-block;
+  background-color: var(--green);
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  border-radius: 30px;
+  color: #FFFFFF;
+  transition: background-color 0.2s ease-in-out;
+  padding: 10px 24px;
+  font-size: 14.8px;
+  font-weight: 500;
+}
+
+.btn--link {
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: rgba(23, 211, 39, 0.842);
+}
+
+.btn--secondary {
+  color: var(--green);
+  border: 1px solid var(--green);
+  background-color: transparent;
+}
+
+.btn--secondary:hover {
+  background-color: rgba(23, 211, 39, 0.842);
+  color: #FFFFFF;
+}
