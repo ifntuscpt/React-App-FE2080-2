@@ -1,30 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import Cards from '../components/Cards';
-import SearchBar from '../components/SearchBtn';
+import Track from '../components/Track';
+import SearchBar from '../components/SearchBar';
 import config from '../lib/config';
 import Button from '../components/Button';
+import CreatePlaylistForm from '../components/CreatePlaylistForm';
+import { getUserProfile } from '../lib/fetchApi';
+import { toast } from 'react-toastify';
 
 export default function Home() {
   const [accessToken, setAccessToken] = useState('');
   const [isAuthorize, setIsAuthorize] = useState(false);
-  const [cards, setCards] = useState([]);
-  const [selectedCardsUri, setSelectedCardsUri] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [selectedTracksUri, setSelectedTracksUri] = useState([]);
+  const [selectedTracks, setSelectedTracks] = useState([]);
   const [isInSearch, setIsInSearch] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    const accessToken = new URLSearchParams(window.location.hash).get('#access_token');
+    const accessTokenParams = new URLSearchParams(window.location.hash).get('#access_token');
 
-    setAccessToken(accessToken);
-    setIsAuthorize(accessToken !== null);
+    if (accessTokenParams !== null) {
+      setAccessToken(accessTokenParams);
+      setIsAuthorize(accessTokenParams !== null);
+
+      const setUserProfile = async () => {
+        try {
+          const response = await getUserProfile(accessTokenParams);
+
+          setUser(response);
+        } catch (e) {
+          toast.error(e);
+        }
+      }
+
+      setUserProfile();
+    }
   }, []);
 
   useEffect(() => {
     if (!isInSearch) {
-      const selectedCards = filterSelectedCards();
-
-      setCards(selectedCards);
+      setTracks(selectedTracks);
     }
-  }, [selectedCardsUri]);
+  }, [selectedTracksUri, selectedTracks, isInSearch]);
 
   const getSpotifyLinkAuthorize = () => {
     const state = Date.now().toString();
@@ -33,34 +50,29 @@ export default function Home() {
     return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=http://localhost:3000&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
   }
 
-  const filterSelectedCards = () => {
-    return cards.filter((track) => selectedCardsUri.includes(track.uri));
-  }
-
-  const onSuccessSearch = (searchCards) => {
+  const onSuccessSearch = (searchTracks) => {
     setIsInSearch(true);
-    const selectedCards = filterSelectedCards();
-    const searchDistincCards = searchCards.filter((cards) => !selectedCardsUri.includes(cards.uri));
 
-    setCards([...selectedCards, ...searchDistincCards]);
+    const selectedSearchTracks = searchTracks.filter((track) => selectedTracksUri.includes(track.uri));
+
+    setTracks([...new Set([...selectedSearchTracks, ...searchTracks])])
   }
 
 
   const clearSearch = () => {
-    const selectedCards = filterSelectedCards();
-    
-    setCards(selectedCards);
+    setTracks(selectedTracks);
     setIsInSearch(false);
   }
-
 
   const toggleSelect = (track) => {
     const uri = track.uri;
 
-    if (selectedCardsUri.includes(uri)) {
-      setSelectedCardsUri(selectedCardsUri.filter((item) => item !== uri));
+    if (selectedTracksUri.includes(uri)) {
+      setSelectedTracksUri(selectedTracksUri.filter((item) => item !== uri));
+      setSelectedTracks(selectedTracks.filter((item) => item.uri !== uri));
     } else {
-      setSelectedCardsUri([...selectedCardsUri, uri]);
+      setSelectedTracksUri([...selectedTracksUri, uri]);
+      setSelectedTracks([...selectedTracks, track]);
     }
   }
 
@@ -76,25 +88,34 @@ export default function Home() {
 
       {isAuthorize && (
         <main className="container" id="home">
+          <CreatePlaylistForm
+            accessToken={accessToken}
+            userId={user.id}
+            uriTracks={selectedTracksUri}
+          />
+
+          <hr />
+
           <SearchBar
             accessToken={accessToken}
-            onSuccess={(cards) => onSuccessSearch(cards)}
+            onSuccess={onSuccessSearch}
             onClearSearch={clearSearch}
           />
 
           <div className="content">
-            {cards.length === 0 && (
-              <p>No Song</p>
+            {tracks.length === 0 && (
+              <p>No tracks</p>
             )}
 
-            <div className="cards">
-              {cards.map((cards) => (
-                <Cards
-                  key={cards.id}
-                  imageUrl={cards.album.images[0].url}
-                  title={cards.name}
-                  artist={cards.artists[0].name}
-                  toggleSelect={() => toggleSelect(cards)}
+            <div className="tracks">
+              {tracks.map((track) => (
+                <Track
+                  key={track.id}
+                  imageUrl={track.album.images[0].url}
+                  title={track.name}
+                  artist={track.artists[0].name}
+                  select={selectedTracksUri.includes(track.uri)}
+                  toggleSelect={() => toggleSelect(track)}
                 />
               ))}
             </div>
