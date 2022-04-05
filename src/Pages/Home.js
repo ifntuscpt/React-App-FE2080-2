@@ -1,33 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import Track from '../components/Track';
-import SearchBar from '../components/SearchBar';
+import SearchBtn from '../components/SearchBtn';
 import config from '../lib/config';
 import Button from '../components/Button';
 import CreatePlaylistForm from '../components/CreatePlaylistForm';
 import { getUserProfile } from '../lib/fetchApi';
 import { toast } from 'react-toastify';
+import { useDocumentTitle } from '../lib/connect';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../slice/authSlice';
 
 export default function Home() {
-  const [accessToken, setAccessToken] = useState('');
-  const [isAuthorize, setIsAuthorize] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [selectedTracksUri, setSelectedTracksUri] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [isInSearch, setIsInSearch] = useState(false);
-  const [user, setUser] = useState({});
+  const isAuthorize = useSelector((state) => state.auth.isAuthorize);
+  const dispatch = useDispatch();
+
+  useDocumentTitle('Home - Spotipy');
 
   useEffect(() => {
     const accessTokenParams = new URLSearchParams(window.location.hash).get('#access_token');
 
     if (accessTokenParams !== null) {
-      setAccessToken(accessTokenParams);
-      setIsAuthorize(accessTokenParams !== null);
-
       const setUserProfile = async () => {
         try {
-          const response = await getUserProfile(accessTokenParams);
+          const responseUser = await getUserProfile(accessTokenParams);
 
-          setUser(response);
+          dispatch(login({
+            accessToken: accessTokenParams,
+            user: responseUser
+          }));
         } catch (e) {
           toast.error(e);
         }
@@ -58,7 +62,6 @@ export default function Home() {
     setTracks([...new Set([...selectedSearchTracks, ...searchTracks])])
   }
 
-
   const clearSearch = () => {
     setTracks(selectedTracks);
     setIsInSearch(false);
@@ -88,23 +91,18 @@ export default function Home() {
 
       {isAuthorize && (
         <main className="container" id="home">
-          <CreatePlaylistForm
-            accessToken={accessToken}
-            userId={user.id}
-            uriTracks={selectedTracksUri}
-          />
+          <CreatePlaylistForm uriTracks={selectedTracksUri} />
 
           <hr />
 
-          <SearchBar
-            accessToken={accessToken}
+          <SearchBtn
             onSuccess={onSuccessSearch}
             onClearSearch={clearSearch}
           />
 
           <div className="content">
             {tracks.length === 0 && (
-              <p>No tracks</p>
+              <p>No Songs</p>
             )}
 
             <div className="tracks">

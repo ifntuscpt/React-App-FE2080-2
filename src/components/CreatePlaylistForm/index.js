@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addTracksToPlaylist, createPlaylist } from '../../lib/fetchApi';
 import Button from '../Button';
 import Input from '../Input';
 import InputGroup from '../InputGroup';
 import './index.css';
+import PropTypes from 'prop-types';
 
-export default function CreatePlaylistForm({ accessToken, userId, uriTracks }) {
+export default function CreatePlaylistForm({ uriTracks }) {
+  const accessToken = useSelector((state) => state.auth.accessToken);
+  const userId = useSelector((state) => state.auth.user.id);
+
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -38,7 +43,7 @@ export default function CreatePlaylistForm({ accessToken, userId, uriTracks }) {
     if (form.description.length > 100) {
       setErrorForm({
         ...errorForm,
-        description: 'Description must be at least 10 characters long'
+        description: 'Description must be less than 100 characters long'
       });
       isValid = false;
     }
@@ -46,24 +51,27 @@ export default function CreatePlaylistForm({ accessToken, userId, uriTracks }) {
     return isValid;
   }
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      try {
-        const responseCreatePlaylist = await createPlaylist(accessToken, userId, {
-          name: form.title,
-          description: form.description,
-        });
+      if (uriTracks.length > 0) {
+        try {
+          const responseCreatePlaylist = await createPlaylist(accessToken, userId, {
+            name: form.title,
+            description: form.description,
+          });
 
-        await addTracksToPlaylist(accessToken, responseCreatePlaylist.id, uriTracks);
+          await addTracksToPlaylist(accessToken, responseCreatePlaylist.id, uriTracks);
 
-        toast.success('Playlist created successfully');
+          toast.success('Playlist created successfully');
 
-        setForm({ title: '', description: '' });
-      } catch (error) {
-        toast.error(error);
+          setForm({ title: '', description: '' });
+        } catch (error) {
+          toast.error(error);
+        }
+      } else {
+        toast.error('Please select at least one track');
       }
     }
   }
@@ -107,4 +115,8 @@ export default function CreatePlaylistForm({ accessToken, userId, uriTracks }) {
       </div>
     </div>
   )
+}
+
+CreatePlaylistForm.propTypes = {
+  uriTracks: PropTypes.array.isRequired,
 }

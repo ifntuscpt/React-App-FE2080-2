@@ -1,5 +1,5 @@
 body {
-	background-color: rgb(32,33,36);
+	background-color: rgb(41, 43, 47);
 	/* background-image: url(https://www.wallpaperbetter.com/wallpaper/897/808/985/piano-bw-black-hd-1080P-wallpaper.jpg); */
 }
 
@@ -25,10 +25,10 @@ body {
 	top:1px;
 }
 
-* {
-  font-family: arial;
-  color: rgba(23, 211, 39, 0.842);
-}
+p {
+	font-family: arial;
+	color: rgba(23, 211, 39, 0.842);
+  }
 
 img {
 	border-radius: 25px;

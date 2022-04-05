@@ -13,3 +13,12 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.form form-playlist {
+  font-family: arial;
+}
+
+h2 {
+  font-family: arial;
+	color: rgba(23, 211, 39, 0.842);
+}

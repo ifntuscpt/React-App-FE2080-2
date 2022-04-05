@@ -1,5 +1,5 @@
 .card {
-  width: 230px;
+  width: 220px;
   border: 1px solid #EEEEEE;
   border-radius: 10px;
   overflow: hidden;
@@ -40,15 +40,21 @@
 .card__title {
   font-size: 1rem;
   margin-top: 4px;
+  font-family: arial;
+	color: rgba(23, 211, 39, 0.842);
 }
 
 .card__artist {
   color: var(--gray);
   margin-top: 4px;
+  font-family: arial;
+	color: rgba(23, 211, 39, 0.842);
 }
 
 .card .card__action {
   margin-top: 12px;
   display: flex;
   justify-content: flex-end;
+  font-family: arial;
+	color: rgba(23, 211, 39, 0.842);
 }
