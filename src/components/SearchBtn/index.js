@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../slice/authSlice';
 
-export default function SearchBar({ onSuccess, onClearSearch }) {
+export default function SearchBtn({ onSuccess, onClearSearch }) {
   const accessToken = useSelector((state) => state.auth.accessToken);
   const [text, setText] = useState('');
   const [isClear, setIsClear] = useState(true);
@@ -47,7 +47,7 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
       <form className="form-search" onSubmit={handleSubmit}>
         <Input
           type="text"
-          placeholder="Search..."
+          placeholder="Search track..."
           className="form-search__input"
           required
           value={text}
@@ -63,7 +63,7 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
   )
 }
 
-SearchBar.propTypes = {
+SearchBtn.propTypes = {
   onSuccess: PropTypes.func.isRequired,
   onClearSearch: PropTypes.func.isRequired,
-}
+};

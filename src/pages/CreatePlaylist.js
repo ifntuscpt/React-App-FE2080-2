@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Track from '../components/Track';
-import SearchBtn from '../components/SearchBtn';
+import SearchBar from '../components/SearchBtn';
 import CreatePlaylistForm from '../components/CreatePlaylistForm';
 import { useDocumentTitle } from '../lib/connect';
 import Layout from '../components/Layout';
@@ -10,8 +10,7 @@ export default function Home() {
   const [selectedTracksUri, setSelectedTracksUri] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [isInSearch, setIsInSearch] = useState(false);
-  const [message, setMessage] = useState('No tracks');
-
+  const [message, setMessage] = useState('No Songs');
   useDocumentTitle('Create Playlist - Spotipy');
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function Home() {
       const _tracks = [...new Set([...selectedSearchTracks, ...searchTracks])];
 
       if (_tracks.length === 0) {
-        setMessage(`No tracks found with query "${query}"`);
+        setMessage(`No Songs found with query "${query}"`);
       } else {
         setMessage('');
       }
@@ -40,7 +39,7 @@ export default function Home() {
 
   const clearSearch = () => {
     setTracks(selectedTracks);
-    setMessage('No tracks');
+    setMessage('No Songs');
     setIsInSearch(false);
   }
 
@@ -63,7 +62,7 @@ export default function Home() {
 
         <hr />
 
-        <SearchBtn
+        <SearchBar
           onSuccess={onSuccessSearch}
           onClearSearch={clearSearch}
         />
