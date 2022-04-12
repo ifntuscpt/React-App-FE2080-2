@@ -1,11 +1,5 @@
-.create-playlist-form {
-  display: flex;
-  justify-content: center;
-}
-
 .form-playlist {
-  min-width: 300px;
-  width: 400px;
+  width: 100%;
   margin-top: 24px;
 }
 
@@ -14,11 +8,13 @@
   justify-content: flex-end;
 }
 
-.form form-playlist {
-  font-family: arial;
-}
+@media screen and (min-width: 500px) {
+  .create-playlist-form {
+    display: flex;
+    justify-content: center;
+  }
 
-h2 {
-  font-family: arial;
-	color: rgba(23, 211, 39, 0.842);
+  .form-playlist {
+    width: 400px;
+  }
 }
