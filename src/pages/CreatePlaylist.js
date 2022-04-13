@@ -11,7 +11,7 @@ export default function Home() {
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [isInSearch, setIsInSearch] = useState(false);
   const [message, setMessage] = useState('No Songs');
-  useDocumentTitle('Create Playlist - Spotipy');
+  useDocumentTitle('Spotify - Create Playlist');
 
   useEffect(() => {
     if (!isInSearch) {

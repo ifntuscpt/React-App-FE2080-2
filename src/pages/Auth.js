@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Button from '../components/Button';
+import Button from '@mui/material/Button'
 import config from '../lib/config';
 import { useDocumentTitle } from '../lib/connect'
 import { getUserProfile } from '../lib/fetchApi';
@@ -11,7 +11,7 @@ import { login } from '../slice/authSlice';
 export default function Auth() {
   const dispatch = useDispatch();
   const history = useHistory();
-  useDocumentTitle('Auth - Spotipy');
+  useDocumentTitle('Spotify - Auth');
 
   const setLogin = useCallback(async (accessToken, expiresIn) => {
     try {
@@ -54,7 +54,7 @@ export default function Auth() {
     <main className="center">
       <img src="https://media.giphy.com/media/fsc7c7TYKulQ4lmmAo/giphy.gif" alt="" />
       <h2>Authorize first please🙏</h2>
-      <Button href={getSpotifyLinkAuthorize()} external>Authorize</Button>
+      <Button variant="contained" size="large" color='success' style={{ borderRadius: 50 }} href={getSpotifyLinkAuthorize()} external>Authorize</Button>
     </main>
   )
 }

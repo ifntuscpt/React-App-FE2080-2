@@ -115,7 +115,7 @@ export default function CreatePlaylistForm({ uriTracks }) {
           </InputGroup>
 
           <div className="form-playlist__action">
-            <Button type="submit">Create</Button>
+          <Button variant="contained" size="large" color='success' style={{ borderRadius: 50 }} type="submit">Create</Button>
           </div>
         </form>
       </div>
