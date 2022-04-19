@@ -91,6 +91,10 @@ img {
 	justify-content: center;
 	align-items: center;
   }
+
+  .authorize{
+	  color: #ffffff;
+  }
   
   @media screen and (min-width: 640px) {
 	.container {

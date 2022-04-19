@@ -1,4 +1,5 @@
 import { Box, Button, Text, Heading } from '@chakra-ui/react';
+import ParticlesBg from "particles-bg";
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDocumentTitle } from '../lib/customHooks';
@@ -16,6 +17,7 @@ const NotFound: React.FC = () => {
           GO BACK
         </Button>
       </Link>
+      <ParticlesBg type="ball" bg={true} />
     </Box>
   )
 }

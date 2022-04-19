@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ParticlesBg from "particles-bg";
 import Track from '../components/Track';
 import SearchBtn from '../components/SearchBtn';
 import CreatePlaylistForm from '../components/CreatePlaylistForm';
@@ -92,6 +93,7 @@ const CreatePlaylist: React.FC = () => {
             </Grid>
           ))}
         </Box>
+        <ParticlesBg type="cobweb" bg={true} />
       </Box>
     </Layout>
   );

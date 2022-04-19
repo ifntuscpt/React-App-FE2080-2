@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
+import ParticlesBg from "particles-bg";
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import config from '../lib/config';
@@ -57,10 +58,11 @@ const Auth : React.FC = () => {
     <main>
       <Box className="center" gap={2}>
         <img src="https://media.giphy.com/media/fsc7c7TYKulQ4lmmAo/giphy.gif" alt="" />
-        <Heading>Authorize first please🙏</Heading>
+        <Heading className="authorize">Authorize first please🙏</Heading>
         <Link href={buildSpotifyLinkAuthorize()} _hover={{ textDecoration: 'none' }}>
           <Button>Authorize</Button>
         </Link>
+        <ParticlesBg type="thick" bg={true} />
       </Box>
       
     </main>
