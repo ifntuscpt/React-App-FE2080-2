@@ -1,10 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useAppSelector } from '../../store';
 
-export default function GuardRoute({ children, type, ...props }) {
-  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+interface IProps {
+  children: React.ReactNode;
+  type: string;
+}
+
+const GuardRoute: React.FC<IProps & any> = ({ children, type, ...props }) =>{
+  const isAuthorized: boolean = useAppSelector((state) => state.auth.isAuthorized);
 
   if (type === 'guest') {
     return (
@@ -21,7 +25,4 @@ export default function GuardRoute({ children, type, ...props }) {
   )
 }
 
-GuardRoute.propTypes = {
-  children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['guest', 'private']).isRequired,
-};
+export default GuardRoute;

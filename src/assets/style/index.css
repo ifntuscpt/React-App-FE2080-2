@@ -19,12 +19,6 @@ body, p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  	background-color: rgb(41, 43, 47);
-}
-
 .form {
   display: flex;
   flex-direction: column;
@@ -56,11 +50,6 @@ body {
 	position:relative;
 	top:1px;
 }
-
-p {
-	font-family: arial;
-	color: rgba(23, 211, 39, 0.842);
-  }
 
 img {
 	border-radius: 25px;
