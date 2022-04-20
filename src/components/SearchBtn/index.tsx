@@ -53,12 +53,20 @@ const SearchBar: React.FC<IProps> = ({ onSuccess, onClearSearch }) => {
     <Box>
       <Flex as="form" gap={3} onSubmit={handleSubmit}>
         <Input
-          placeholder="Artists, songs, or podcasts"
+          placeholder="Search track..."
           required
           value={text}
           onChange={handleInput}
+          data-testid="search-input"
         />
-        <Button type="submit"><FaSearch /></Button>
+        <Button
+          type="submit"
+          data-testid="search-button"
+          aria-label="search button"
+          disabled={text.length === 0}
+        >
+          <FaSearch />
+        </Button>
       </Flex>
 
       {!isClear && (

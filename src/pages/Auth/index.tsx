@@ -2,13 +2,13 @@ import React, { useCallback, useEffect } from 'react';
 import ParticlesBg from "particles-bg";
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import config from '../lib/config';
-import { useDocumentTitle } from '../lib/customHooks';
-import { getUserProfile } from '../lib/fetchApi';
-import { login } from '../slice/authSlice';
+import config from '../../lib/config';
+import { useDocumentTitle } from '../../lib/customHooks';
+import { getUserProfile } from '../../lib/fetchApi';
+import { login } from '../../slice/authSlice';
 import { Box, Button, Link, Heading } from '@chakra-ui/react'
-import { User } from '../types/user';
-import { useAppDispatch } from '../store';
+import { User } from '../../types/user';
+import { useAppDispatch } from '../../store';
 
 const Auth : React.FC = () => {
   const dispatch = useAppDispatch();
