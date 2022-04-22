@@ -26,8 +26,8 @@ const theme = extendTheme({
           }
         },
         outline: {
-          borderColor: 'primary.500',
-          color: 'primary.500',
+          borderColor: 'green.500',
+          color: 'green.500',
           _focus: {
             ring: 2,
             ringColor: 'primary.500',
@@ -37,12 +37,12 @@ const theme = extendTheme({
     },
     Input: {
       defaultProps: {
-        focusBorderColor: 'primary.500',
+        focusBorderColor: 'green.500',
       },
     },
     Textarea: {
       defaultProps: {
-        focusBorderColor: 'primary.500',
+        focusBorderColor: 'green.500',
       },
     },
     Heading: {
