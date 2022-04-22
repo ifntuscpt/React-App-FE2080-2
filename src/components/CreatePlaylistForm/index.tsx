@@ -107,7 +107,13 @@ const CreatePlaylistForm: React.FC<IProps> = ({ uriTracks }) => {
   return (
     <VStack justify="center">
       <Box>
-        <Heading as="h3" size="lg">Create Playlist</Heading>
+        <h1 className='gigih'>👋SI GIGIH</h1>
+        </Box>
+        <Box>
+        <h1 className='author'>Welcome to Ciputfy by KM_G2FE2080</h1>
+      </Box>
+      <Box>
+        <Heading as="h1" size="lg">Create Playlist Here 👇</Heading>
       </Box>
 
       <Box

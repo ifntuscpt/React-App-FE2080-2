@@ -93,7 +93,7 @@ const CreatePlaylist: React.FC = () => {
             </Grid>
           ))}
         </Box>
-        <ParticlesBg type="tadpole" bg={true} />
+        <ParticlesBg color="#F1F1F1" num={100} type="cobweb" bg={true} />
       </Box>
     </Layout>
   );

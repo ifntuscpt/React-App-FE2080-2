@@ -57,12 +57,12 @@ const Auth : React.FC = () => {
   return (
     <main>
       <Box className="center" gap={2}>
-        <img src="https://media.giphy.com/media/fsc7c7TYKulQ4lmmAo/giphy.gif" alt="" />
+        <img src="https://media0.giphy.com/media/fQZOjHhnfXHTz6YoqZ/giphy.gif?cid=790b761115f6d078791880db52229398f5983e1a5a3857b9&rid=giphy.gif&ct=s" alt="" />
         <Heading className="authorize">Authorize first please🙏</Heading>
         <Link href={buildSpotifyLinkAuthorize()} _hover={{ textDecoration: 'none' }}>
           <Button>Authorize</Button>
         </Link>
-        <ParticlesBg type="thick" bg={true} />
+        <ParticlesBg num={500} type="thick" bg={true} />
       </Box>
       
     </main>

@@ -11,10 +11,10 @@ const NotFound: React.FC = () => {
     <Box as="main" className="center" gap={2}>
       <img src="https://www.scdn.co/i/404/record.svg" alt="" />
       <Heading>404s and heartbreaks</Heading>
-      <Text>We couldn’t find the page you were looking for. Maybe our FAQ or Community can help?</Text>
+      <Text className='notfound'>We couldn’t find the page you were looking for. Maybe our FAQ or Community can help?</Text>
       <Link to="/create-playlist">
         <Button>
-          GO BACK
+          Go Back
         </Button>
       </Link>
       <ParticlesBg type="ball" bg={true} />
