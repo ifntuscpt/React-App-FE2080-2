@@ -16,6 +16,7 @@
     "@types/react-dom": "^18.0.1",
     "axios": "^0.26.1",
     "framer-motion": "^6.2.10",
+    "gpg": "^0.6.0",
     "node-sass": "^7.0.1",
     "particles-bg": "^2.5.5",
     "react": "^17.0.2",
